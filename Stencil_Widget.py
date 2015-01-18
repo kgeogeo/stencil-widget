@@ -509,9 +509,10 @@ class Stencil_Widget(bpy.types.Operator):
                 if len(self.tab_point) >= 4:
                     v1 = self.tab_point[1] - self.tab_point[0]
                     v2 = self.tab_point[3] - self.tab_point[2]
-                    propx = v1.x/v2.x
-                    self.scale *= abs(propx)
-                    brush.stencil_dimension *= abs(propx)
+                    if v2.x != 0:
+                        propx = v1.x/v2.x
+                        self.scale *= abs(propx)
+                        brush.stencil_dimension *= abs(propx)
                     self.tab_point = []
                     self.intuitive_scale = False
         
